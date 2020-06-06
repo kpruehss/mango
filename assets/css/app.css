@@ -1,9 +1,9 @@
 /* This file is for your main application css. */
-@import "tailwind/base";
+@import "tailwindcss/base";
 
-@import "tailwind/components";
+@import "tailwindcss/components";
 
-@import "tailwind/utilities";
+@import "tailwindcss/utilities";
 /* Alerts and form errors */
 .alert {
   padding: 15px;
