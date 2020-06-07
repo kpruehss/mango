@@ -36,6 +36,26 @@ defmodule MangoWeb.Acceptance.CategoryPageTest do
   end
 
   test "show vegetables" do
-    # write tests for vegetables
+    ## WHEN ##
+    # I navigate to vegetables page
+    navigate_to("/categories/vegetables")
+
+    ## THEN ##
+    # I expect the pge title to be "Vegetables"
+    page_title = find_element(:css, ".product") |> visible_text()
+    assert page_title == "Vegetables"
+
+    # And I expect Apple in the product display
+    product = find_element(:css, ".product")
+    product_name = find_within_element(product, :css, ".product-name") |> visible_text()
+    product_price = find_within_element(product, :css, ".product-price") |> visible_text()
+
+    assert product_name == "Potato"
+
+    # And I expect it's price of 100 to be displayed on screen
+    assert product_price == "50"
+
+    # And I expect that Potato is not present on screen
+    refute page_source() =~ "Apple"
   end
 end
