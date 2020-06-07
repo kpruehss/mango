@@ -44,7 +44,8 @@ defmodule Mango.MixProject do
       {:telemetry_poller, "~> 0.4"},
       {:gettext, "~> 0.11"},
       {:jason, "~> 1.0"},
-      {:plug_cowboy, "~> 2.0"}
+      {:plug_cowboy, "~> 2.0"},
+      {:wallaby, "~>0.25.0", runtime: false, only: :test}
     ]
   end
 
@@ -59,7 +60,12 @@ defmodule Mango.MixProject do
       setup: ["deps.get", "ecto.setup", "cmd npm install --prefix assets"],
       "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
       "ecto.reset": ["ecto.drop", "ecto.setup"],
-      test: ["ecto.create --quiet", "ecto.migrate --quiet", "test"]
+      test: ["assets.compile --quiet", "ecto.create --quiet", "ecto.migrate --quiet", "test"],
+      "assets.compile": &compile_assets/1
     ]
+  end
+
+  defp compile_assets(_) do
+    Mix.shell().cmd("./assets/node_modules/webpack/bin/webpack.js --mode development", quiet: true)
   end
 end
