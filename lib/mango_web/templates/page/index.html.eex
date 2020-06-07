@@ -1,1 +1,9 @@
-<h1 class="text-4xl">Seasonal products</h1>
+<h1 class="mt-6 text-4xl text-orange-600 page-title">Seasonal Products</h1>
+<div>
+  <%= for product <- @seasonal_products do %>
+  <div class="mt-4 product">
+    <div class="product-name"><%= product.name %></div>
+    <div>INR <span class="product-price"><%= product.price %></span></div>
+  </div>
+  <% end %>
+</div>
