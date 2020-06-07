@@ -18,7 +18,7 @@ defmodule MangoWeb.Acceptance.CategoryPageTest do
 
     ## THEN ##
     # I expect the apge title to be "Fruits"
-    page_title = find_element(:css, ".product") |> visible_text()
+    page_title = find_element(:css, ".page-title") |> visible_text()
     assert page_title == "Fruits"
 
     # And I expect Apple in the product display
@@ -42,7 +42,7 @@ defmodule MangoWeb.Acceptance.CategoryPageTest do
 
     ## THEN ##
     # I expect the pge title to be "Vegetables"
-    page_title = find_element(:css, ".product") |> visible_text()
+    page_title = find_element(:css, ".page-title") |> visible_text()
     assert page_title == "Vegetables"
 
     # And I expect Apple in the product display
